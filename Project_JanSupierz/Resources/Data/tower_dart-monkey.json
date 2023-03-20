@@ -1,0 +1,301 @@
+{
+  "id": "dart-monkey",
+  "name": "Dart Monkey",
+  "description": "Throws a single dart at nearby Bloons. Short range and low pierce but cheap.",
+  "type": "Primary",
+  "cost": {
+    "easy": 170,
+    "medium": 200,
+    "hard": 215,
+    "impoppable": 240
+  },
+  "stats": {
+    "damage": "1",
+    "pierce": "2",
+    "attackSpeed": "0.95",
+    "range": "32",
+    "type": "sharp"
+  },
+  "footprint": 6,
+  "defaultHotkey": "q",
+  "paths": {
+    "path1": [
+      {
+        "name": "Sharp Shots",
+        "description": "Can pop 1 extra Bloon per shot.",
+        "cost": {
+          "easy": 120,
+          "medium": 140,
+          "hard": 150,
+          "impoppable": 170
+        },
+        "unlockXp": 100,
+        "effects": [
+          "+1p (3)"
+        ],
+        "source": "https://www.reddit.com/atomg3"
+      },
+      {
+        "name": "Razor Sharp Shots",
+        "description": "Can pop 2 more Bloons per shot.",
+        "cost": {
+          "easy": 185,
+          "medium": 220,
+          "hard": 235,
+          "impoppable": 265
+        },
+        "unlockXp": 500,
+        "effects": [
+          "+2p (5)"
+        ],
+        "source": "https://www.reddit.com/atomg3"
+      },
+      {
+        "name": "Spike-O-Pult",
+        "description": "Converts the Dart Monkey into a Spike-o-pult that hurls a large spiked ball instead of darts. Good range, but slower attack speed. Each ball can pop lots of Bloons.",
+        "cost": {
+          "easy": 185,
+          "medium": 220,
+          "hard": 235,
+          "impoppable": 265
+        },
+        "unlockXp": 500,
+        "effects": [
+          "dart replaced by spikeball",
+          "1d, 1cd (2), 22p, 32r, 1.15s, shatter type",
+          "can rebound off walls"
+        ],
+        "source": "https://www.reddit.com/atomg3"
+      },
+      {
+        "name": "Juggernaut",
+        "description": "Hurls a giant spiked ball that pops lead and excels at crushing Ceramic Bloons.",
+        "cost": {
+          "easy": 1530,
+          "medium": 1800,
+          "hard": 1945,
+          "impoppable": 2160
+        },
+        "unlockXp": 7500,
+        "effects": [
+          "spikeball replaced by juggernaut",
+          "2d, 3cd (5), 50p, 36.8r, 1.0s, normal type",
+          "can rebound off walls",
+          "applies knockback status",
+          "0.1s duration",
+          "300% slow for regular bloons, 150% for leads and ceramics"
+        ],
+        "source": "https://www.reddit.com/atomg3"
+      },
+      {
+        "name": "Ultra-Juggernaut",
+        "description": "Gigantic spiked ball splits twice into 6 Juggernaut balls for even more destructive power.",
+        "cost": {
+          "easy": 12750,
+          "medium": 15000,
+          "hard": 16200,
+          "impoppable": 18000
+        },
+        "unlockXp": 22000,
+        "effects": [
+          "juggernaut replaced by ultrajugg",
+          "5d, 8cd (13), 200p, 36.8r, 1.0s, normal type",
+          "can rebound, and rehit bloons after rebounding",
+          "at 50%p and 100%p: minijuggs",
+          "1d, 2cd (3), 6j, 100p, normal type",
+          "note: both sets of minijuggs can also be emitted by the projectile expiring"
+        ],
+        "source": "https://www.reddit.com/atomg3"
+      }
+    ],
+    "path2": [
+      {
+        "name": "Quick Shots",
+        "description": "Shoots 15% faster.",
+        "cost": {
+          "easy": 85,
+          "medium": 100,
+          "hard": 110,
+          "impoppable": 120
+        },
+        "unlockXp": 80,
+        "effects": [
+          "85%s (0.8075)"
+        ],
+        "source": "https://www.reddit.com/atomg3"
+      },
+      {
+        "name": "Very Quick Shots",
+        "description": "Shoots 33% faster!",
+        "cost": {
+          "easy": 160,
+          "medium": 190,
+          "hard": 205,
+          "impoppable": 230
+        },
+        "unlockXp": 400,
+        "effects": [
+          "78.82%s (0.6365)"
+        ],
+        "source": "https://www.reddit.com/atomg3"
+      },
+      {
+        "name": "Triple Shot",
+        "description": "Throws 3 darts at a time instead of 1.",
+        "cost": {
+          "easy": 340,
+          "medium": 400,
+          "hard": 430,
+          "impoppable": 480
+        },
+        "unlockXp": 2000,
+        "effects": [
+          "+2j (3)"
+        ],
+        "source": "https://www.reddit.com/atomg3"
+      },
+      {
+        "name": "Super Monkey Fan Club",
+        "description": "Super Monkey Fan Club ability: Converts up to 10 nearby Dart Monkeys including himself into Super Monkeys for 15 seconds. Regular attack speed also increased.",
+        "cost": {
+          "easy": 6800,
+          "medium": 8000,
+          "hard": 8640,
+          "impoppable": 9600
+        },
+        "unlockXp": 9500,
+        "effects": [
+          "75%s (0.477375)",
+          "gains fan-club ability (50s cooldown, 15s duration)",
+          "transforms 10 nearest dart monkeys (with upgrades up to 242) into superfans",
+          "dart attack",
+          "1d, 2p, 40r, 0.06s, sharp type",
+          "upgrades such as 1xx are inherited"
+        ],
+        "source": "https://www.reddit.com/atomg3"
+      },
+      {
+        "name": "Plasma Monkey Fan Club",
+        "description": "Elite membership of this club grants the Dart Monkeys even more power!",
+        "cost": {
+          "easy": 42500,
+          "medium": 50000,
+          "hard": 54000,
+          "impoppable": 60000
+        },
+        "unlockXp": 30000,
+        "effects": [
+          "fan-club replaced by plasma-club (50s cooldown, 15s duration)",
+          "transforms 20 nearest dart monkeys (with upgrades up to 252) into plasmafans",
+          "plasma attack",
+          "2d, 5p, 40r, 0.03s, plasma type",
+          "upgrades such as 1xx are inherited"
+        ],
+        "source": "https://www.reddit.com/atomg3"
+      }
+    ],
+    "path3": [
+      {
+        "name": "Long Range Darts",
+        "description": "Makes the Dart Monkey shoot further than normal.",
+        "cost": {
+          "easy": 75,
+          "medium": 90,
+          "hard": 95,
+          "impoppable": 110
+        },
+        "unlockXp": 50,
+        "effects": [
+          "+8r (40)"
+        ],
+        "source": "https://www.reddit.com/atomg3"
+      },
+      {
+        "name": "Enhanced Eyesight",
+        "description": "Shoots even further and can detect Camo Bloons.",
+        "cost": {
+          "easy": 170,
+          "medium": 200,
+          "hard": 215,
+          "impoppable": 240
+        },
+        "unlockXp": 450,
+        "effects": [
+          "+8r (48), increased projectile speed",
+          "gains camo detection and targeting option"
+        ],
+        "source": "https://www.reddit.com/atomg3"
+      },
+      {
+        "name": "Crossbow",
+        "description": "Uses a long range Crossbow that can pop 3 layers of Bloon for every hit.",
+        "cost": {
+          "easy": 530,
+          "medium": 625,
+          "hard": 675,
+          "impoppable": 750
+        },
+        "unlockXp": 2100,
+        "effects": [
+          "dart replaced by bolt",
+          "3d, 3p, 56r, 0.95s, sharp type"
+        ],
+        "source": "https://www.reddit.com/atomg3"
+      },
+      {
+        "name": "Sharp Shooter",
+        "description": "Sharp Shooter does powerful Crit Shots every few seconds that do a lot more damage.",
+        "cost": {
+          "easy": 1700,
+          "medium": 2000,
+          "hard": 2160,
+          "impoppable": 2400
+        },
+        "unlockXp": 12000,
+        "effects": [
+          "+3d (6), 0.75s, increased projectile speed",
+          "50d crit every 8-12 shots"
+        ],
+        "source": "https://www.reddit.com/atomg3"
+      },
+      {
+        "name": "Crossbow Master",
+        "description": "Crossbow Master shoots really fast and devastates most Bloon types with ease.",
+        "cost": {
+          "easy": 21250,
+          "medium": 25000,
+          "hard": 27000,
+          "impoppable": 30000
+        },
+        "unlockXp": 35000,
+        "effects": [
+          "+7p (10), +20r (76), 0.16s, normal type, increased projectile speed",
+          "crit now occurs every 4-8 shots",
+          "crosspath",
+          "105: +6p (16)",
+          "205: +7p (23)"
+        ],
+        "source": "https://www.reddit.com/atomg3"
+      }
+    ],
+    "paragon": {
+      "name": "Apex Plasma Master",
+      "description": "Fill the area with Bloon shredding plasma juggernaut balls, leaving nothing behind...",
+      "cost": {
+        "easy": 297500,
+        "medium": 350000,
+        "hard": 378000,
+        "impoppable": 420000
+      },
+      "unlockXp": 500000,
+      "effects": [
+        "has camo detection",
+        "triple-jugg attack",
+        "20d, 30cd (50), 80bd (100), 3j, 200p, 85r, 0.3s, normal type",
+        "at 50%p and 100%p: juggernauts",
+        "20d, 30cd (50), 80bd (100), 6j, 200p, normal type"
+      ],
+      "source": "https://www.reddit.com/atomg3"
+    }
+  }
+}

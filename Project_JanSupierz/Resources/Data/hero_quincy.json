@@ -1,0 +1,368 @@
+{
+  "id": "quincy",
+  "name": "Quincy",
+  "description": "Proud, strong and intelligent, Quincy uses his bow to perform feats of amazing skill.",
+  "skinChange": [
+    3,
+    7,
+    10,
+    20
+  ],
+  "skins": [
+    {
+      "id": "cyber-quincy",
+      "name": "Cyber Quincy"
+    },
+    {
+      "id": "wolfpack-quincy",
+      "name": "Wolfpack Quincy"
+    }
+  ],
+  "cost": {
+    "easy": 455,
+    "medium": 540,
+    "hard": 585,
+    "impoppable": 650
+  },
+  "stats": {
+    "damage": "1",
+    "pierce": "3",
+    "attackSpeed": "0.95",
+    "range": "50",
+    "type": "sharp",
+    "special": [
+      {
+        "name": "Shots Jump",
+        "value": "Yes"
+      }
+    ]
+  },
+  "unlock": {
+    "how": "level",
+    "value": "1"
+  },
+  "levelSpeed": "1",
+  "levels": [
+    {
+      "level": 1,
+      "description": "Quincy's arrows bounce up to 3 different targets.",
+      "xp": 0,
+      "rounds": {
+        "easy": "0",
+        "medium": "0",
+        "hard": "0",
+        "impoppable": "0"
+      },
+      "effects": [
+        "size: medium (7)",
+        "arrow attack",
+        "1d, 3p, 50r, 0.95s, sharp type",
+        "jumps to nearby (50 units) targets"
+      ],
+      "source": "https://www.reddit.com/cfu359"
+    },
+    {
+      "level": 2,
+      "description": "Base attack bounces up to 4 targets.",
+      "xp": 180,
+      "rounds": {
+        "easy": "3",
+        "medium": "3",
+        "hard": "3",
+        "impoppable": "3"
+      },
+      "effects": [
+        "arrow buffed: +1p (4)"
+      ],
+      "source": "https://www.reddit.com/cfu359"
+    },
+    {
+      "level": 3,
+      "description": "Unlocks Rapid Shot Ability.",
+      "xp": 460,
+      "rounds": {
+        "easy": "7",
+        "medium": "7",
+        "hard": "6",
+        "impoppable": "6"
+      },
+      "effects": [
+        "gains rapid-shot ability (60s cooldown, 3.5s duration)",
+        "33.33%s",
+        "duration increases 0.5s per level (2 + 0.5 level)"
+      ],
+      "source": "https://www.reddit.com/cfu359"
+    },
+    {
+      "level": 4,
+      "description": "Slightly longer range.",
+      "xp": 1000,
+      "rounds": {
+        "easy": "12",
+        "medium": "11",
+        "hard": "11",
+        "impoppable": "10"
+      },
+      "effects": [
+        "arrow buffed: +2r (52)"
+      ],
+      "source": "https://www.reddit.com/cfu359"
+    },
+    {
+      "level": 5,
+      "description": "Allows Quincy to detect Camo Bloons.",
+      "xp": 1860,
+      "rounds": {
+        "easy": "18",
+        "medium": "17",
+        "hard": "16",
+        "impoppable": "15"
+      },
+      "effects": [
+        "gains camo detection"
+      ],
+      "source": "https://www.reddit.com/cfu359"
+    },
+    {
+      "level": 6,
+      "description": "Allows Quincy to fire two arrows.",
+      "xp": 3280,
+      "rounds": {
+        "easy": "24",
+        "medium": "23",
+        "hard": "22",
+        "impoppable": "21"
+      },
+      "effects": [
+        "arrow buffed: +1j (2)"
+      ],
+      "source": "https://www.reddit.com/cfu359"
+    },
+    {
+      "level": 7,
+      "description": "Quincy shoots an exploding arrow every 3rd shot.",
+      "xp": 5180,
+      "rounds": {
+        "easy": "29",
+        "medium": "28",
+        "hard": "27",
+        "impoppable": "26"
+      },
+      "effects": [
+        "every third arrow replaced by bomb-arrow",
+        "same stats as arrow",
+        "on first hit: explosion\t",
+        "1d, 10p, 25.7r blast, explosion type",
+        "note: bloons can be hit by both the arrow and the explosion"
+      ],
+      "source": "https://www.reddit.com/cfu359"
+    },
+    {
+      "level": 8,
+      "description": "Arrows deal triple damage to MOAB-class bloons.",
+      "xp": 8320,
+      "rounds": {
+        "easy": "36",
+        "medium": "34",
+        "hard": "33",
+        "impoppable": "32"
+      },
+      "effects": [
+        "all attacks buffed: +2md (3)"
+      ],
+      "source": "https://www.reddit.com/cfu359"
+    },
+    {
+      "level": 9,
+      "description": "Base attack bounces up to 6 targets.",
+      "xp": 9380,
+      "rounds": {
+        "easy": "42",
+        "medium": "40",
+        "hard": "39",
+        "impoppable": "38"
+      },
+      "effects": [
+        "arrow and bomb-arrow buffed: +2p (6)"
+      ],
+      "source": "https://www.reddit.com/cfu359"
+    },
+    {
+      "level": 10,
+      "description": "Unlocks Storm of Arrows Ability.",
+      "xp": 13620,
+      "rounds": {
+        "easy": "49",
+        "medium": "47",
+        "hard": "45",
+        "impoppable": "44"
+      },
+      "effects": [
+        "gains storm-of-arrows ability (70s cooldown, 3s duration)",
+        "6d, 6md (12), ∞p, 100r zone, 0.05s, sharp type",
+        "5% chance of hitting (per frame)",
+        "can rehit after 0.05s",
+        "centred according to Quincy's targeting when activated",
+        "note: this implies on average 8.53 hits per bloon"
+      ],
+      "source": "https://www.reddit.com/cfu359"
+    },
+    {
+      "level": 11,
+      "description": "Increased attack speed by 50%.",
+      "xp": 16380,
+      "rounds": {
+        "easy": "57",
+        "medium": "55",
+        "hard": "52",
+        "impoppable": "50"
+      },
+      "effects": [
+        "arrow buffed: 0.6s"
+      ],
+      "source": "https://www.reddit.com/cfu359"
+    },
+    {
+      "level": 12,
+      "description": "Each arrow gets more popping power.",
+      "xp": 14400,
+      "rounds": {
+        "easy": "63",
+        "medium": "60",
+        "hard": "58",
+        "impoppable": "56"
+      },
+      "effects": [
+        "arrow buffed: +1p (7)"
+      ],
+      "source": "https://www.reddit.com/cfu359"
+    },
+    {
+      "level": 13,
+      "description": "Small range increase.",
+      "xp": 16650,
+      "rounds": {
+        "easy": "68",
+        "medium": "66",
+        "hard": "63",
+        "impoppable": "61"
+      },
+      "effects": [
+        "arrow buffed: +2r (54)"
+      ],
+      "source": "https://www.reddit.com/cfu359"
+    },
+    {
+      "level": 14,
+      "description": "Arrows do quad damage to MOAB-Class Bloons.",
+      "xp": 14940,
+      "rounds": {
+        "easy": "73",
+        "medium": "70",
+        "hard": "68",
+        "impoppable": "65"
+      },
+      "effects": [
+        "all attacks buffed: +1md (4)"
+      ],
+      "source": "https://www.reddit.com/cfu359"
+    },
+    {
+      "level": 15,
+      "description": "Rapid shot becomes 4x attack speed, reduced cooldown to 45s.",
+      "xp": 16380,
+      "rounds": {
+        "easy": "77",
+        "medium": "74",
+        "hard": "72",
+        "impoppable": "69"
+      },
+      "effects": [
+        "rapid-shot buffed: 45s cooldown, is now a 25%s buff"
+      ],
+      "source": "https://www.reddit.com/cfu359"
+    },
+    {
+      "level": 16,
+      "description": "Increased attack speed by 50%",
+      "xp": 17820,
+      "rounds": {
+        "easy": "81",
+        "medium": "78",
+        "hard": "76",
+        "impoppable": "73"
+      },
+      "effects": [
+        "arrow buffed: 0.4s"
+      ],
+      "source": "https://www.reddit.com/cfu359"
+    },
+    {
+      "level": 17,
+      "description": "Arrows last 25% longer.",
+      "xp": 19260,
+      "rounds": {
+        "easy": "85",
+        "medium": "82",
+        "hard": "80",
+        "impoppable": "77"
+      },
+      "effects": [
+        "arrow buffed: +25% lifetime",
+        "every other arrow replaced by bomb-arrow"
+      ],
+      "source": "https://www.reddit.com/cfu359"
+    },
+    {
+      "level": 18,
+      "description": "Storm of Arrows has reduced cooldown, 50% more arrows, and faster attack speed.",
+      "xp": 20700,
+      "rounds": {
+        "easy": "89",
+        "medium": "86",
+        "hard": "83",
+        "impoppable": "81"
+      },
+      "effects": [
+        "arrow buffed: 0.25s",
+        "storm-of-arrows buffed",
+        "55s cooldown",
+        "7.5% chance to hit (for an average 12.49 hits per bloon)"
+      ],
+      "source": "https://www.reddit.com/cfu359"
+    },
+    {
+      "level": 19,
+      "description": "Each arrow gets even more popping power.",
+      "xp": 16470,
+      "rounds": {
+        "easy": "93",
+        "medium": "89",
+        "hard": "86",
+        "impoppable": "84"
+      },
+      "effects": [
+        "arrow buffed: +2p (9)"
+      ],
+      "source": "https://www.reddit.com/cfu359"
+    },
+    {
+      "level": 20,
+      "description": "Storm of Arrows, increased damage per arrows, and even more arrows.",
+      "xp": 17280,
+      "rounds": {
+        "easy": "96",
+        "medium": "92",
+        "hard": "89",
+        "impoppable": "86"
+      },
+      "effects": [
+        "arrow buffed: 0.2s",
+        "storm-of-arrows buffed",
+        "+4d (10), +4md (20)",
+        "10% chance to hit (for an average 16.28 hits per bloon)"
+      ],
+      "source": "https://www.reddit.com/cfu359"
+    }
+  ]
+}

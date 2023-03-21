@@ -87,6 +87,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="ViewModel\MainWindowVM.cs" />
+    <Compile Include="ViewModel\TowerPageVM.cs" />
     <Compile Include="View\TowerPage.xaml.cs">
       <DependentUpon>TowerPage.xaml</DependentUpon>
     </Compile>

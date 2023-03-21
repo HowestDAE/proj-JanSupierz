@@ -14,7 +14,7 @@ namespace Project_JanSupierz.Model
         public int Impoppable { get; set; }
     }
 
-    public class Stats
+    public class Statistics
     {
         public string Damage { get; set; }
         public string Pierce { get; set; }
@@ -34,6 +34,6 @@ namespace Project_JanSupierz.Model
         public string DefaultHotkey { get; set; }
 
         public Cost Cost { get; set; }
-        public Stats Stats { get; set; }
+        public Statistics Stats { get; set; }
     }
 }

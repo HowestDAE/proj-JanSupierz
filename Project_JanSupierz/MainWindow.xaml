@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Project_JanSupierz"
         xmlns:viewModel="clr-namespace:Project_JanSupierz.ViewModel"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" Background="White">
+        Title="MainWindow" Height="450" Width="800" Background="White" MinWidth="500" MinHeight="500">
 
     <Window.DataContext>
         <viewModel:MainWindowVM/>

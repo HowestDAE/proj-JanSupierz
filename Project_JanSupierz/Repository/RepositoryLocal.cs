@@ -26,15 +26,18 @@ namespace Project_JanSupierz.Repository
             string json = File.ReadAllText("../../Resources/Data/towers.json");
             JArray towerArray = JArray.Parse(json);
 
+            //Load Upgrades
             foreach (JObject towerObject in towerArray) 
             {
                 Tower tower = towerObject.ToObject<Tower>();
                 JObject pathObject = towerObject.SelectToken("paths").ToObject<JObject>();
 
+                //Add upgrade paths
                 tower.Paths.Add("path1", pathObject.SelectToken("path1").ToObject<List<PathUpgrade>>());
                 tower.Paths.Add("path2", pathObject.SelectToken("path2").ToObject<List<PathUpgrade>>());
                 tower.Paths.Add("path3", pathObject.SelectToken("path3").ToObject<List<PathUpgrade>>());
 
+                //Save id for the upgrade images
                 int index = 1;
                 tower.Paths["path1"].ForEach(pathUpgrade => pathUpgrade.Id = $"{tower.Id}/00{index++.ToString()}");
 

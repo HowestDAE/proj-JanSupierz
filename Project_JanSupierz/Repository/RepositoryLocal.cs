@@ -35,6 +35,14 @@ namespace Project_JanSupierz.Repository
                 tower.Paths.Add("path2", pathObject.SelectToken("path2").ToObject<List<PathUpgrade>>());
                 tower.Paths.Add("path3", pathObject.SelectToken("path3").ToObject<List<PathUpgrade>>());
 
+                int index = 1;
+                tower.Paths["path1"].ForEach(pathUpgrade => pathUpgrade.Id = $"{tower.Id}/00{index++.ToString()}");
+
+                index = 1;
+                tower.Paths["path2"].ForEach(pathUpgrade => pathUpgrade.Id = $"{tower.Id}/0{index++.ToString()}0");
+
+                index = 1;
+                tower.Paths["path3"].ForEach(pathUpgrade => pathUpgrade.Id = $"{tower.Id}/{index++.ToString()}00");
                 _towers.Add(tower);
             }
 

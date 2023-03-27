@@ -42,7 +42,9 @@ namespace Project_JanSupierz.Model
     }
 
     public class PathUpgrade
-    {   
+    {
+        [JsonIgnore]
+        public string Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public Cost Cost { get; set; }

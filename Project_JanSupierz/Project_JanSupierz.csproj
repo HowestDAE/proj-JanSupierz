@@ -89,6 +89,8 @@
     <Compile Include="Repository\RepositoryLocal.cs" />
     <Compile Include="ViewModel\MainWindowVM.cs" />
     <Compile Include="ViewModel\TowerPageVM.cs" />
+    <Compile Include="View\Converters\IdAndPathToImageConverter.cs" />
+    <Compile Include="View\Converters\IdToImageConverter.cs" />
     <Compile Include="View\TowerPage.xaml.cs">
       <DependentUpon>TowerPage.xaml</DependentUpon>
     </Compile>

@@ -22,16 +22,9 @@ namespace Project_JanSupierz.ViewModel
             DefaultHotkey = "Q",
             Id = "dart-monkey"
         };
-        public Tower CurrentTower { get { return _currentTower; } set { _currentTower = value; OnPropertyChanged(nameof(CurrentImage)); OnPropertyChanged(nameof(CurrentTower)); } }
+        public Tower CurrentTower { get { return _currentTower; } set { _currentTower = value; OnPropertyChanged(nameof(CurrentTower)); } }
 
         public List<PathUpgrade> CurrentPath { get; set; } = new List<PathUpgrade>();
-
-        public string CurrentImage {
-            get
-            {
-                return $"https://statsnite.com/images/btd/towers/{CurrentTower.Id}/tower.png";
-            }
-        }
 
         public TowerPageVM()
         {

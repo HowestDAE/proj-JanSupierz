@@ -86,6 +86,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Repository\RepositoryLocal.cs" />
     <Compile Include="ViewModel\MainWindowVM.cs" />
     <Compile Include="ViewModel\TowerPageVM.cs" />
     <Compile Include="View\TowerPage.xaml.cs">
@@ -134,14 +135,13 @@
     </None>
     <None Include="Resources\Data\bloon_red.json" />
     <None Include="Resources\Data\hero_quincy.json" />
+    <None Include="Resources\Data\towers.json" />
     <None Include="Resources\Data\tower_dart-monkey.json" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Repository\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Resource Include="Resources\bloon.png" />
     <Resource Include="Resources\bloon_type.png" />
@@ -149,6 +149,12 @@
     <Resource Include="Resources\hero_001.png" />
     <Resource Include="Resources\tower.png" />
     <Resource Include="Resources\tower_001.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Bloons_Pop_Background.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\background.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="packages\CommunityToolkit.Mvvm.8.1.0\build\netstandard2.0\CommunityToolkit.Mvvm.targets" Condition="Exists('packages\CommunityToolkit.Mvvm.8.1.0\build\netstandard2.0\CommunityToolkit.Mvvm.targets')" />

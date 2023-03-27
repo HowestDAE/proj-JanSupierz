@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -35,5 +36,17 @@ namespace Project_JanSupierz.Model
 
         public Cost Cost { get; set; }
         public Statistics Stats { get; set; }
+
+        [JsonIgnore]
+        public Dictionary<string, List<PathUpgrade>> Paths { get; set; } = new Dictionary<string, List<PathUpgrade>>();
+    }
+
+    public class PathUpgrade
+    {   
+        public string Name { get; set; }
+        public string Description { get; set; }
+        public Cost Cost { get; set; }
+        public int UnlockXp { get; set; }
+        public List<string> Effects { get; set; }
     }
 }

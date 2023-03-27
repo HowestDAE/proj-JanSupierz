@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using Project_JanSupierz.Model;
+using Project_JanSupierz.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +11,7 @@ namespace Project_JanSupierz.ViewModel
 {
     public class TowerPageVM: ObservableObject
     {
-        public Tower CurrentTower { get; } = new Tower
+        private Tower _currentTower  = new Tower
         {
             Cost = new Cost { Easy = 170, Medium = 200, Hard = 215, Impoppable = 240 },
             Name = "DART MONKEY",
@@ -21,5 +22,21 @@ namespace Project_JanSupierz.ViewModel
             DefaultHotkey = "Q",
             Id = "dart-monkey"
         };
+        public Tower CurrentTower { get { return _currentTower; } set { _currentTower = value; OnPropertyChanged(nameof(CurrentImage)); OnPropertyChanged(nameof(CurrentTower)); } }
+
+        public List<PathUpgrade> CurrentPath { get; set; } = new List<PathUpgrade>();
+
+        public string CurrentImage {
+            get
+            {
+                return $"https://statsnite.com/images/btd/towers/{CurrentTower.Id}/tower.png";
+            }
+        }
+
+        public TowerPageVM()
+        {
+            CurrentTower = ReposioryLocal.GetTowers()[3];
+            CurrentPath = CurrentTower.Paths["path1"];
+        }
     }
 }

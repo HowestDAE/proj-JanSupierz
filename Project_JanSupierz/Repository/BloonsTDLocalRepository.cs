@@ -51,9 +51,9 @@ namespace Project_JanSupierz.Repository
                     JObject pathObject = towerObject.SelectToken("paths").ToObject<JObject>();
 
                     //Add upgrade paths
-                    tower.Paths.Add(pathObject.SelectToken("path1").ToObject<List<UpgradePath>>());
-                    tower.Paths.Add(pathObject.SelectToken("path2").ToObject<List<UpgradePath>>());
-                    tower.Paths.Add(pathObject.SelectToken("path3").ToObject<List<UpgradePath>>());
+                    tower.Paths.Add(pathObject.SelectToken("path1").ToObject<List<Upgrade>>());
+                    tower.Paths.Add(pathObject.SelectToken("path2").ToObject<List<Upgrade>>());
+                    tower.Paths.Add(pathObject.SelectToken("path3").ToObject<List<Upgrade>>());
 
                     //Save id for the upgrade images
                     for (int index = 0; index < tower.Paths.Count; index++)

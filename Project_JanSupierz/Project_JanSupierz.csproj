@@ -91,8 +91,13 @@
     <Compile Include="Repository\IBloonsTDRepository.cs" />
     <Compile Include="ViewModel\MainWindowVM.cs" />
     <Compile Include="ViewModel\TowerPageVM.cs" />
-    <Compile Include="View\Converters\IdAndPathToImageConverter.cs" />
-    <Compile Include="View\Converters\TowerIdToImage.cs" />
+    <Compile Include="View\TowersPage.xaml.cs">
+      <DependentUpon>TowersPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModel\TowersPageVM.cs" />
+    <Compile Include="View\Converters\BloonsConverter.cs" />
+    <Compile Include="View\Converters\TowerToImageConverter.cs" />
+    <Compile Include="View\Converters\TowerUpgradeToImageConverter.cs" />
     <Compile Include="View\TowerPage.xaml.cs">
       <DependentUpon>TowerPage.xaml</DependentUpon>
     </Compile>
@@ -108,6 +113,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="View\TowersPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\TowerPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -140,7 +149,6 @@
     <None Include="Resources\Data\bloon_red.json" />
     <None Include="Resources\Data\hero_quincy.json" />
     <None Include="Resources\Data\towers.json" />
-    <None Include="Resources\Data\tower_dart-monkey.json" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Project_JanSupierz.Repository
 {
-    internal interface IBloonsTDRepository
+    public interface IBloonsTDRepository
     {
         Task<List<Tower>> GetTowersAsync();
         Task<Tower> GetTowerAsync();

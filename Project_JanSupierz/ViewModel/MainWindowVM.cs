@@ -13,10 +13,11 @@ namespace Project_JanSupierz.ViewModel
     {
         public Page CurrentPage {  get; set; }
         private TowerPage TowerPage { get; } = new TowerPage();
+        private TowersPage TowersPage { get; } = new TowersPage();
 
         public MainWindowVM()
         {
-            CurrentPage = TowerPage;
+            CurrentPage = TowersPage;
         }
     }
 }

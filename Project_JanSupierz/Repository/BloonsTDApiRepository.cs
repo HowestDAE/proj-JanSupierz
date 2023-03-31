@@ -61,9 +61,9 @@ namespace Project_JanSupierz.Repository
                         JObject pathObject = towerObject.SelectToken("paths").ToObject<JObject>();
 
                         //Add upgrade paths
-                        tower.Paths.Add(pathObject.SelectToken("path1").ToObject<List<UpgradePath>>());
-                        tower.Paths.Add(pathObject.SelectToken("path2").ToObject<List<UpgradePath>>());
-                        tower.Paths.Add(pathObject.SelectToken("path3").ToObject<List<UpgradePath>>());
+                        tower.Paths.Add(pathObject.SelectToken("path1").ToObject<List<Upgrade>>());
+                        tower.Paths.Add(pathObject.SelectToken("path2").ToObject<List<Upgrade>>());
+                        tower.Paths.Add(pathObject.SelectToken("path3").ToObject<List<Upgrade>>());
 
                         //Save id for the upgrade images
                         for (int index = 0; index < tower.Paths.Count; index++)
@@ -83,32 +83,6 @@ namespace Project_JanSupierz.Repository
                 {
                     MessageBox.Show("Loading towers failed!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
-
-                //await Task.Run(() =>
-                //{
-                //    foreach (Tower tower in _towers)
-                //    {
-                //        foreach (List<UpgradePath> towerPath in tower.Paths)
-                //        {
-                //            foreach (UpgradePath upgradePath in towerPath)
-                //            {
-                //                string url = $"https://statsnite.com/images/btd/towers/{upgradePath.Id}.png"; // the URL of the image to download
-                //                string savePath = $@"../../Resources/Towers/{upgradePath.Id}.png"; // the path to save the downloaded image
-                //
-                //                if (!Directory.Exists($@"../..Resources/Towers/{tower.Id})"))
-                //                {
-                //                    Directory.CreateDirectory($@"../../Resources/Towers/{upgradePath.Id}");
-                //                }
-                //
-                //                using (WebClient clientt = new WebClient())
-                //                {
-                //                    clientt.DownloadFile(url, savePath);
-                //                }
-                //            }
-                //        }
-                //    }
-                //});
-
 
                 return _towers;
             }

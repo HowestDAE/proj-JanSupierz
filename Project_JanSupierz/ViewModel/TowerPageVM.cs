@@ -15,10 +15,12 @@ namespace Project_JanSupierz.ViewModel
 {
     public class TowerPageVM: ObservableObject
     {
-        private IBloonsTDRepository _bloomTDRepository = new BloonsTDApiRepository();
+        private BloonsTDApiRepository _bloomTDApiRepository = new BloonsTDApiRepository();
+        private BloonsTDLocalRepository _bloonsTDLocalRepository = new BloonsTDLocalRepository();
+        private IBloonsTDRepository _bloonsTDRepository = null;
 
         private int _currentPathIndex;
-        private List<UpgradePath> _currentPath = new List<UpgradePath>();
+        private List<Upgrade> _currentPath = new List<Upgrade>();
 
         private Tower _currentTower = new Tower
         {
@@ -34,12 +36,12 @@ namespace Project_JanSupierz.ViewModel
 
         //XAML - Bindings
         public Tower CurrentTower { get { return _currentTower; } set { _currentTower = value;  OnPropertyChanged(nameof(CurrentTower)); } }
-        public List<UpgradePath> CurrentPath { get { return _currentPath; } set { _currentPath = value; OnPropertyChanged(nameof(CurrentPath)); } }
-        public bool UseApi { get; set; } = true;
+        public List<Upgrade> CurrentPath { get { return _currentPath; } set { _currentPath = value; OnPropertyChanged(nameof(CurrentPath)); } }
 
         //Commands
         public RelayCommand PreviousUpgradesCommand { get; private set; }
         public RelayCommand NextUpgradesCommand { get; private set; }
+        public RelayCommand ChangeRepositoryCommand { get; private set; }
 
         private void LoadCurrentPath()
         {
@@ -54,7 +56,7 @@ namespace Project_JanSupierz.ViewModel
 
         private async void LoadTower()
         {
-            CurrentTower = await _bloomTDRepository.GetTowerAsync();
+            CurrentTower = await _bloonsTDRepository.GetTowerAsync();
 
             //Load default path
             _currentPathIndex = 0;
@@ -64,10 +66,14 @@ namespace Project_JanSupierz.ViewModel
 
         public TowerPageVM()
         {
+            _bloonsTDRepository = _bloomTDApiRepository;
+            BloonsConverter.UseApi = (_bloonsTDRepository == _bloomTDApiRepository);
+
             LoadTower();
 
             PreviousUpgradesCommand = new RelayCommand(PreviousUpgrades);
             NextUpgradesCommand = new RelayCommand(NextUpgrades);
+            ChangeRepositoryCommand = new RelayCommand(ChangeRepository);
         }
 
         //Helper functions
@@ -101,6 +107,21 @@ namespace Project_JanSupierz.ViewModel
             }
 
             LoadCurrentPath();
+        }
+
+        private void ChangeRepository()
+        {
+            if (_bloonsTDRepository == _bloomTDApiRepository)
+            {
+                _bloonsTDRepository = _bloonsTDLocalRepository;
+
+            }
+            else
+            {
+                _bloonsTDRepository = _bloomTDApiRepository;
+            }
+
+            BloonsConverter.UseApi = (_bloonsTDRepository == _bloomTDApiRepository);
         }
     }
 }

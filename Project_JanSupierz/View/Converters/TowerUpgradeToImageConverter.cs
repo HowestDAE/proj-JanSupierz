@@ -1,31 +1,25 @@
-﻿using Newtonsoft.Json.Linq;
-using Project_JanSupierz.Model;
-using Project_JanSupierz.Properties;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Globalization;
-using System.IO;
 using System.Linq;
-using System.Net;
-using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Data;
 using System.Windows.Media.Imaging;
 
 namespace Project_JanSupierz.View.Converters
 {
-    internal class TowerIdToImageConverter: IValueConverter
+    public class TowerUpgradeToImageConverter :BloonsConverter, IValueConverter
     {
-        private static bool _useApi = false;
-
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             string id = value.ToString();
 
-            if(_useApi)
+            if (UseApi)
             {
-                return $"https://statsnite.com/images/btd/towers/{id}/tower.png";
+                return $"https://statsnite.com/images/btd/towers/{value.ToString()}.png";
             }
             else
             {
@@ -33,12 +27,12 @@ namespace Project_JanSupierz.View.Converters
 
                 try
                 {
-                     image = new BitmapImage(new Uri($"pack://application:,,,/Resources/Towers/{id}/tower.png", UriKind.Absolute));
+                    string path = (DesignerProperties.GetIsInDesignMode(new DependencyObject())) ? $"Resources/Towers/{id}.png" : $"../../Resources/Towers/{id}.png";
+                    image = new BitmapImage(new Uri($"pack://application:,,,/{path}", UriKind.Absolute));
                 }
                 catch
-                {
-                    //Fallback
-                    image = new BitmapImage(new Uri($"pack://application:,,,/Resources/Towers/tower.png", UriKind.Absolute));
+                { 
+                    return Binding.DoNothing;
                 }
 
                 return image;
@@ -50,5 +44,4 @@ namespace Project_JanSupierz.View.Converters
             throw new NotImplementedException();
         }
     }
-
 }

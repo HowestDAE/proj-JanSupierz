@@ -16,25 +16,24 @@
     </Page.DataContext>
 
     <Page.Resources>
-        <conv:TowerIdToImageConverter x:Key="TowerToImage"/>
-        <conv:IdAndPathToImageConverter x:Key="UpgradeToImage"/>
+        <conv:TowerToImageConverter x:Key="TowerToImage"/>
+        <conv:TowerUpgradeToImageConverter x:Key="UpgradeToImage"/>
+        <SolidColorBrush x:Key="TextColor" Color="#a45841"/>
+        <SolidColorBrush x:Key="BackgroundColor" Color="AliceBlue"/>
     </Page.Resources>
 
-    <Grid Background="CornflowerBlue" TextBlock.Foreground="#a45841">
+    <Grid Background="CornflowerBlue" TextBlock.Foreground="{StaticResource TextColor}">
 
         <Grid.Resources>
-            <SolidColorBrush x:Key="mainTitle" Color="#a45841"/>
-            <system:Double x:Key="mainTitleSize">18</system:Double>
-
-            <SolidColorBrush x:Key="title" Color="#a45841"/>
-            <system:Double x:Key="titleSize">14</system:Double>
-
-            <!--<system:Double x:Key="textSize">13</system:Double>
+            <system:Double x:Key="MainTitleSize">18</system:Double>
+            <system:Double x:Key="TitleSize">14</system:Double>
             
-            <system:Double x:Key="numberSize">26</system:Double>
-
-            <Thickness x:Key="marginList">10,5</Thickness>
-            <Thickness x:Key="marginBox">10</Thickness>-->
+            <Thickness x:Key="SmallMargin">10</Thickness>
+            <Thickness x:Key="LargeMargin">20</Thickness>
+            <Thickness x:Key="BottomMargin">0,0,0,5</Thickness>
+            
+            <Thickness x:Key="BorderThickness">3</Thickness>
+            <CornerRadius x:Key="BorderRadius">10</CornerRadius>
         </Grid.Resources>
 
         <Grid.RowDefinitions>
@@ -47,27 +46,29 @@
             <ColumnDefinition Width="3*"/>
             <ColumnDefinition Width="2*"/>
         </Grid.ColumnDefinitions>
-
+        
+        <!-- Name + description -->
         <Viewbox Grid.RowSpan="4" Grid.ColumnSpan="4" Stretch="UniformToFill" >
             <Image Source="/Resources/background.png" Opacity="0.5" />
         </Viewbox>
 
-        <Border CornerRadius="10" Background="AliceBlue" Margin="10" BorderBrush="{StaticResource mainTitle}" BorderThickness="3"/>
+        <!-- Name + description -->
+        <Border CornerRadius="10" BorderBrush="{StaticResource TextColor}" Background="{StaticResource BackgroundColor}" Margin="{StaticResource SmallMargin}" BorderThickness="{StaticResource BorderThickness}"/>
 
-        <Viewbox Stretch="Uniform" Margin="20">
-            <StackPanel Grid.Row="0" Grid.Column="1" Margin="10">
-                <TextBlock Text="{Binding CurrentTower.Name, FallbackValue=(name)}" HorizontalAlignment="Center" FontSize="{StaticResource mainTitleSize}" Foreground="{StaticResource mainTitle}" FontWeight="Bold"/>
-                <TextBlock Text="{Binding CurrentTower.Description, FallbackValue=(descripton)}" TextWrapping="Wrap"/>
+        <Viewbox Stretch="Uniform" Margin="{StaticResource LargeMargin}">
+            <StackPanel Grid.Row="0" Grid.Column="1" Margin="{StaticResource SmallMargin}">
+                <TextBlock Text="{Binding CurrentTower.Name, FallbackValue=(name)}" HorizontalAlignment="Center" FontSize="{StaticResource MainTitleSize}" FontWeight="Bold"/>
+                <TextBlock Text="{Binding CurrentTower.Description, FallbackValue=(descripton)}"/>
             </StackPanel>
         </Viewbox>
 
-        <Image Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" Margin="10" Source="{Binding CurrentTower.Id, Converter={StaticResource TowerToImage}}"/>
+        <Image Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" Margin="10" Source="{Binding CurrentTower.Id, Converter={StaticResource TowerToImage}, FallbackValue=https://statsnite.com/images/btd/towers/dart-monkey/tower.png}"/>
 
 
-        <Border CornerRadius="10" Background="AliceBlue" Margin="10" Grid.Row="1" BorderBrush="{StaticResource mainTitle}" BorderThickness="3"/>
+        <Border Grid.Row="1"  BorderBrush="{StaticResource TextColor}" Background="{StaticResource BackgroundColor}" CornerRadius="{StaticResource BorderRadius}" BorderThickness="{StaticResource BorderThickness}" Margin="{StaticResource SmallMargin}"/>
 
-        <Viewbox Grid.Row="1" Grid.Column="0" Margin="20">
-            <StackPanel>
+        <Viewbox Grid.Row="1" Grid.Column="0" Margin="{StaticResource LargeMargin}">
+            <StackPanel  Background="{StaticResource BackgroundColor}">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="1*"/>
@@ -76,8 +77,8 @@
                     </Grid.ColumnDefinitions>
 
                     <StackPanel Grid.Column="0">
-                        <TextBlock Text="Stats:" HorizontalAlignment="Center" Margin="0,0,0,5" FontSize="{StaticResource titleSize}" FontWeight="ExtraBold"/>
-                        <StackPanel >
+                        <TextBlock Text="Stats:" HorizontalAlignment="Center" Margin="{StaticResource BottomMargin}" FontSize="{StaticResource TitleSize}" FontWeight="ExtraBold"/>
+                        <StackPanel>
                             <TextBlock TextAlignment="Center" Padding="10,0">
                             <Run Text="Damage: " FontWeight="Bold"/>
                             <Run Text="{Binding CurrentTower.Stats.Damage, FallbackValue=(170)}"/>
@@ -99,7 +100,7 @@
 
 
                     <StackPanel Grid.Column="1">
-                        <TextBlock Text="Cost:" HorizontalAlignment="Center" Margin="0,0,0,5" FontSize="{StaticResource titleSize}" FontWeight="ExtraBold"/>
+                        <TextBlock Text="Cost:" HorizontalAlignment="Center" Margin="{StaticResource BottomMargin}" FontSize="{StaticResource TitleSize}" FontWeight="ExtraBold"/>
                         <StackPanel >
                             <TextBlock TextAlignment="Center" Padding="10,0">
                             <Run Text="Easy: " FontWeight="Bold"/>
@@ -121,7 +122,7 @@
                     </StackPanel>
 
                     <StackPanel Grid.Column="2">
-                        <TextBlock Text="Info:" HorizontalAlignment="Center" Margin="0,0,0,5" FontSize="{StaticResource titleSize}" FontWeight="ExtraBold"/>
+                        <TextBlock Text="Info:" HorizontalAlignment="Center" Margin="{StaticResource BottomMargin}" FontSize="{StaticResource TitleSize}" FontWeight="ExtraBold"/>
                         <StackPanel >
                             <TextBlock TextAlignment="Center" Padding="10,0">
                             <Run Text="Type: " FontWeight="Bold"/>
@@ -144,7 +145,7 @@
                 </Grid>
             </StackPanel>
         </Viewbox>
-        <Grid Grid.Column="0" Grid.Row="2" Grid.RowSpan="1" Grid.ColumnSpan="2" Background="AliceBlue">
+        <Grid Grid.Column="0" Grid.Row="2" Grid.RowSpan="1" Grid.ColumnSpan="2" Background="{StaticResource BackgroundColor}">
 
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*"/>
@@ -156,33 +157,37 @@
                 <RowDefinition Height="1*"/>
                 <RowDefinition Height="8*"/>
             </Grid.RowDefinitions>
-            
-            <ListBox Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" ItemsSource="{Binding CurrentPath}" Height="auto" ScrollViewer.VerticalScrollBarVisibility="Disabled" HorizontalAlignment="Center" >
+
+            <ListBox Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" ItemsSource="{Binding CurrentPath}" Height="auto" ScrollViewer.VerticalScrollBarVisibility="Disabled" HorizontalAlignment="Center" BorderBrush="{StaticResource BackgroundColor}" Background="{StaticResource BackgroundColor}">
 
             <ListBox.ItemsPanel>
                 <ItemsPanelTemplate>
-                    <WrapPanel Orientation="Horizontal" Background="AliceBlue" Height="auto"/>
+                    <WrapPanel Orientation="Horizontal" Height="auto"/>
                 </ItemsPanelTemplate>
             </ListBox.ItemsPanel>
 
             <ListBox.ItemTemplate >
                 <DataTemplate>
-                    <Border BorderThickness="2" BorderBrush="{StaticResource mainTitle}" Margin="5" CornerRadius="10">
+                    <Border BorderThickness="2" BorderBrush="{StaticResource TextColor}" Margin="5" CornerRadius="10">
                         <Viewbox>
                             <StackPanel>
-                                <Image Source="{Binding Id, Converter={StaticResource UpgradeToImage}}"/>
+                                <Image Source="{Binding Id, Converter={StaticResource UpgradeToImage},FallbackValue=https://statsnite.com/images/btd/towers/dart-monkey/tower.png}"/>
                             </StackPanel>
                         </Viewbox>
                     </Border>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        <Button Grid.Column="2" Background="AliceBlue" Command="{Binding PreviousUpgradesCommand}">
+
+        <!-- Buttons -->
+            <Button Grid.Column="2" Command="{Binding PreviousUpgradesCommand}" Background="{StaticResource BackgroundColor}">
             <TextBlock Text="Next"/>
         </Button>
-        <Button Grid.Column="0" Background="AliceBlue" Command="{Binding NextUpgradesCommand}">
+
+            <Button Grid.Column="0" Command="{Binding NextUpgradesCommand}" Background="{StaticResource BackgroundColor}">
             <TextBlock Text="Previous"/>
         </Button>
+            
         </Grid>
 
     </Grid>

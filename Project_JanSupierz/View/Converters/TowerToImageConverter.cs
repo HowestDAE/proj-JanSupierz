@@ -1,39 +1,38 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Data;
 using System.Windows.Media.Imaging;
 
 namespace Project_JanSupierz.View.Converters
 {
-    public class IdAndPathToImageConverter : IValueConverter
+    internal class TowerToImageConverter :BloonsConverter, IValueConverter
     {
-        private static bool _useApi = false;
-
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             string id = value.ToString();
 
-            if (_useApi)
+            if (UseApi)
             {
-                return $"https://statsnite.com/images/btd/towers/{value.ToString()}.png";
+                return $"https://statsnite.com/images/btd/towers/{id}/tower.png";
             }
             else
             {
                 BitmapImage image = null;
-                
 
                 try
                 {
-                    image = new BitmapImage(new Uri($"pack://application:,,,/Resources/Towers/{id}.png", UriKind.Absolute));
+                    string path = (DesignerProperties.GetIsInDesignMode(new DependencyObject())) ? $"Resources/Towers/{id}/tower.png" : $"../../Resources/Towers/{id}/tower.png";
+                    image = new BitmapImage(new Uri($"pack://application:,,,/{path}", UriKind.Absolute));
                 }
                 catch
                 {
-                    //Fallback
-                    image = new BitmapImage(new Uri($"pack://application:,,,/Resources/Towers/tower.png", UriKind.Absolute));
+                    return Binding.DoNothing;
                 }
 
                 return image;

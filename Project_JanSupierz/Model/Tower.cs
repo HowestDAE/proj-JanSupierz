@@ -38,10 +38,10 @@ namespace Project_JanSupierz.Model
         public Statistics Stats { get; set; }
 
         [JsonIgnore]
-        public List<List<UpgradePath>> Paths { get; set; } = new List<List<UpgradePath>>();
+        public List<List<Upgrade>> Paths { get; set; } = new List<List<Upgrade>>();
     }
 
-    public class UpgradePath
+    public class Upgrade
     {
         [JsonIgnore]
         public string Id { get; set; }

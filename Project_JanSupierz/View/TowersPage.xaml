@@ -5,15 +5,83 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Project_JanSupierz.ViewModel"
       xmlns:viewModel="clr-namespace:Project_JanSupierz.ViewModel"
+      xmlns:conv="clr-namespace:Project_JanSupierz.View.Converters"
+      xmlns:system="clr-namespace:System;assembly=mscorlib"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="TowersPage">
 
     <Page.DataContext>
-        <viewModel:TowerPageVM/>
+        <viewModel:TowersPageVM/>
     </Page.DataContext>
 
-    <Grid>
-        <Image Source="/Resources/background.png" />
+    <Page.Resources>
+        <conv:TowerToImageConverter x:Key="TowerToImage"/>
+        <SolidColorBrush x:Key="TextColor" Color="#a45841"/>
+        <SolidColorBrush x:Key="BackgroundColor" Color="AliceBlue"/>
+        <SolidColorBrush x:Key="SearchListColor" Color="#a2216aaa"/>
+    </Page.Resources>
+
+    <Grid TextBlock.Foreground="{StaticResource TextColor}" Background="{StaticResource BackgroundColor}">
+
+        <Grid.Resources>
+            <system:Double x:Key="MainTitleSize">18</system:Double>
+            <system:Double x:Key="TitleSize">14</system:Double>
+
+            <Thickness x:Key="SmallMargin">10</Thickness>
+            <Thickness x:Key="LargeMargin">20</Thickness>
+            <Thickness x:Key="BottomMargin">0,0,0,5</Thickness>
+
+            <Thickness x:Key="BorderThickness">3</Thickness>
+            <CornerRadius x:Key="BorderRadius">10</CornerRadius>
+        </Grid.Resources>
+        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+
+        <Rectangle Grid.ColumnSpan="3" Fill="{StaticResource SearchListColor}"/>
+        <Border BorderBrush="{StaticResource TextColor}" BorderThickness="{StaticResource BorderThickness}" Margin="{StaticResource LargeMargin}" CornerRadius="{StaticResource BorderRadius}" Background="{StaticResource BackgroundColor}">
+            <Viewbox Margin="10">
+                <TextBox Text="Search by name" VerticalAlignment="Center" Padding="5,0,5,0" Background="{StaticResource BackgroundColor}" BorderBrush="{StaticResource BackgroundColor}"/>
+            </Viewbox>
+        </Border>
+
+        <ListBox Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3" ItemsSource="{Binding CurrentTowers}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" HorizontalAlignment="Center" BorderBrush="{StaticResource BackgroundColor}" Background="{StaticResource BackgroundColor}">
+
+            <ListBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel Orientation="Horizontal"/>
+                </ItemsPanelTemplate>
+            </ListBox.ItemsPanel>
+
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+
+                    <Border Grid.Row="0" Grid.RowSpan="2" BorderThickness="3" BorderBrush="{StaticResource TextColor}" Margin="5" CornerRadius="10" ClipToBounds="True" Width="200">
+
+                        <Border.Background>
+                            <ImageBrush ImageSource="/Resources/background.png" Opacity="0.8" Stretch="UniformToFill"/>
+                        </Border.Background>
+
+                        <StackPanel>
+                            <Image Grid.Row="0" Source="{Binding Id, Converter={StaticResource TowerToImage},FallbackValue=https://statsnite.com/images/btd/towers/dart-monkey/tower.png}"/>
+
+                            <Border BorderThickness="0,2,0,0" BorderBrush="{StaticResource TextColor}" CornerRadius="0,0,10,10" Background="AliceBlue">
+                                <TextBlock Text="{Binding Name}" Padding="10" HorizontalAlignment="Center" Foreground="{StaticResource TextColor}" FontWeight="SemiBold" FontSize="{StaticResource MainTitleSize}"/>
+                            </Border>
+                        </StackPanel>
+                    </Border>
+
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
     </Grid>
 </Page>

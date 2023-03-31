@@ -22,7 +22,7 @@ namespace Project_JanSupierz.ViewModel
 
         private async void LoadTowers()
         {
-            _currentTowers = await _bloonsTDRepository.GetTowersAsync();
+            CurrentTowers = await _bloonsTDRepository.GetTowersAsync();
         }
 
         public TowersPageVM()

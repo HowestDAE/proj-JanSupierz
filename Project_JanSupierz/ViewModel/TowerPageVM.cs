@@ -66,7 +66,7 @@ namespace Project_JanSupierz.ViewModel
 
         public TowerPageVM()
         {
-            _bloonsTDRepository = _bloomTDApiRepository;
+            _bloonsTDRepository = _bloonsTDLocalRepository;
             BloonsConverter.UseApi = (_bloonsTDRepository == _bloomTDApiRepository);
 
             LoadTower();

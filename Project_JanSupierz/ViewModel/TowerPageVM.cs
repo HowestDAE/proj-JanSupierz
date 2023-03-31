@@ -13,84 +13,85 @@ namespace Project_JanSupierz.ViewModel
 {
     public class TowerPageVM: ObservableObject
     {
-        private string _currentPathName;
-        private Tower _currentTower  = new Tower
+        private IBloomTDRepository _bloomTDRepository = new BloomTDLocalRepository();
+
+        private int _currentPathIndex;
+        private List<UpgradePath> _currentPath = new List<UpgradePath>();
+
+        private Tower _currentTower = new Tower
         {
-            Cost = new Cost { Easy = 170, Medium = 200, Hard = 215, Impoppable = 240 },
-            Name = "DART MONKEY",
-            Description = "Throws a single dart at nearby Bloons. Short range and low pierce but cheap.",
-            Stats = new Statistics { AttackSpeed = "0.95", Damage = "1", Pierce = "2", Range = "32", Type = "Sharp" },
-            Type = "Primary",
-            Footprint = 6,
-            DefaultHotkey = "Q",
-            Id = "dart-monkey"
+            Cost = new Cost { Easy = 0, Medium = 0, Hard = 0, Impoppable = 0 },
+            Name = "(name)",
+            Description = "(description)",
+            Stats = new Statistics { AttackSpeed = "0", Damage = "0", Pierce = "0", Range = "0", Type = "(type)" },
+            Type = "(type)",
+            Footprint = 0,
+            DefaultHotkey = "(hotkey)",
+            Id = "(id)"
         };
+
+        //XAML - Bindings
         public Tower CurrentTower { get { return _currentTower; } set { _currentTower = value;  OnPropertyChanged(nameof(CurrentTower)); } }
+        public List<UpgradePath> CurrentPath { get { return _currentPath; } set { _currentPath = value; OnPropertyChanged(nameof(CurrentPath)); } }
 
-        public List<PathUpgrade> CurrentPath { get; set; } = new List<PathUpgrade>();
-
+        //Commands
         public RelayCommand PreviousUpgradesCommand { get; private set; }
         public RelayCommand NextUpgradesCommand { get; private set; }
 
-        public void NextUpgrades()
+        private void LoadCurrentPath()
         {
-            if(_currentPathName == null)
+            //Check range
+            if (CurrentTower.Paths.Count > _currentPathIndex && _currentPathIndex >= 0) 
             {
-                _currentPathName = "path1";
+                CurrentPath = CurrentTower.Paths[_currentPathIndex];
             }
-            else
-            {
-                //Char to int conversion
-                int lastLetter = _currentPathName.Last() - '0';
-
-                if(lastLetter == 3)
-                {
-                    lastLetter = 1;
-                }
-                else
-                {
-                    ++lastLetter;
-                }
-
-                _currentPathName = $"path{lastLetter}";
-            }
-
-            CurrentPath = CurrentTower.Paths[_currentPathName];
-            OnPropertyChanged(nameof(CurrentPath));
         }
 
-        public void PreviousUpgrades()
+        private async void LoadTower()
         {
-            if (_currentPathName == null)
-            {
-                _currentPathName = "path1";
-            }
-            else
-            {
-                //Char to int conversion
-                int lastLetter = _currentPathName.Last() - '0';
+            CurrentTower = await _bloomTDRepository.GetTowerAsync();
 
-                if (lastLetter == 1)
-                {
-                    lastLetter = 3;
-                }
-                else
-                {
-                    --lastLetter;
-                }
-
-                _currentPathName = $"path{lastLetter}";
-            }
-
-            CurrentPath = CurrentTower.Paths[_currentPathName];
-            OnPropertyChanged(nameof(CurrentPath));
+            //Load default path
+            _currentPathIndex = 0;
+            LoadCurrentPath();
         }
+
+
         public TowerPageVM()
         {
-            CurrentTower = ReposioryLocal.GetTowers()[5];
+            LoadTower();
+
             PreviousUpgradesCommand = new RelayCommand(PreviousUpgrades);
             NextUpgradesCommand = new RelayCommand(NextUpgrades);
-            NextUpgrades();
+        }
+
+        //Helper functions
+        private void NextUpgrades()
+        {
+            if (_currentPathIndex >= CurrentTower.Paths.Count -1)
+            {
+                _currentPathIndex = 0;
+            }
+            else
+            {
+                ++_currentPathIndex;
+            }
+
+            LoadCurrentPath();
+        }
+
+        private void PreviousUpgrades()
+        {
+            if (_currentPathIndex <= 0)
+            {
+                _currentPathIndex = CurrentTower.Paths.Count - 1;
+            }
+            else
+            {
+                --_currentPathIndex;
+            }
+
+            LoadCurrentPath();
         }
     }
 }

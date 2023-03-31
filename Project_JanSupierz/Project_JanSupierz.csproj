@@ -86,7 +86,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Repository\RepositoryLocal.cs" />
+    <Compile Include="Repository\BloomTDLocalRepository.cs" />
+    <Compile Include="Repository\IBloomTDRepository.cs" />
     <Compile Include="ViewModel\MainWindowVM.cs" />
     <Compile Include="ViewModel\TowerPageVM.cs" />
     <Compile Include="View\Converters\IdAndPathToImageConverter.cs" />

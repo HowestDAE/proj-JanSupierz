@@ -38,13 +38,14 @@ namespace Project_JanSupierz.Model
         public Statistics Stats { get; set; }
 
         [JsonIgnore]
-        public Dictionary<string, List<PathUpgrade>> Paths { get; set; } = new Dictionary<string, List<PathUpgrade>>();
+        public List<List<UpgradePath>> Paths { get; set; } = new List<List<UpgradePath>>();
     }
 
-    public class PathUpgrade
+    public class UpgradePath
     {
         [JsonIgnore]
         public string Id { get; set; }
+
         public string Name { get; set; }
         public string Description { get; set; }
         public Cost Cost { get; set; }

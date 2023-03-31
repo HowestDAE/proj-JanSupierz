@@ -2,18 +2,20 @@
 using CommunityToolkit.Mvvm.Input;
 using Project_JanSupierz.Model;
 using Project_JanSupierz.Repository;
+using Project_JanSupierz.View.Converters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Data;
 
 namespace Project_JanSupierz.ViewModel
 {
     public class TowerPageVM: ObservableObject
     {
-        private IBloomTDRepository _bloomTDRepository = new BloomTDLocalRepository();
+        private IBloonsTDRepository _bloomTDRepository = new BloonsTDApiRepository();
 
         private int _currentPathIndex;
         private List<UpgradePath> _currentPath = new List<UpgradePath>();
@@ -33,6 +35,7 @@ namespace Project_JanSupierz.ViewModel
         //XAML - Bindings
         public Tower CurrentTower { get { return _currentTower; } set { _currentTower = value;  OnPropertyChanged(nameof(CurrentTower)); } }
         public List<UpgradePath> CurrentPath { get { return _currentPath; } set { _currentPath = value; OnPropertyChanged(nameof(CurrentPath)); } }
+        public bool UseApi { get; set; } = true;
 
         //Commands
         public RelayCommand PreviousUpgradesCommand { get; private set; }
@@ -40,6 +43,8 @@ namespace Project_JanSupierz.ViewModel
 
         private void LoadCurrentPath()
         {
+            if (CurrentTower == null) return;
+
             //Check range
             if (CurrentTower.Paths.Count > _currentPathIndex && _currentPathIndex >= 0) 
             {
@@ -68,6 +73,8 @@ namespace Project_JanSupierz.ViewModel
         //Helper functions
         private void NextUpgrades()
         {
+            if (CurrentTower == null) return;
+
             if (_currentPathIndex >= CurrentTower.Paths.Count -1)
             {
                 _currentPathIndex = 0;
@@ -82,6 +89,8 @@ namespace Project_JanSupierz.ViewModel
 
         private void PreviousUpgrades()
         {
+            if (CurrentTower == null) return;
+
             if (_currentPathIndex <= 0)
             {
                 _currentPathIndex = CurrentTower.Paths.Count - 1;

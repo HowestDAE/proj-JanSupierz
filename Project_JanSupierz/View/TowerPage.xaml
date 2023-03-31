@@ -16,7 +16,7 @@
     </Page.DataContext>
 
     <Page.Resources>
-        <conv:IdToImageConverter x:Key="ToImage"/>
+        <conv:TowerIdToImageConverter x:Key="TowerToImage"/>
         <conv:IdAndPathToImageConverter x:Key="UpgradeToImage"/>
     </Page.Resources>
 
@@ -61,7 +61,8 @@
             </StackPanel>
         </Viewbox>
 
-        <Image Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" Source="{Binding CurrentTower.Id,Converter={StaticResource ToImage}}" Margin="10"/>
+        <Image Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" Margin="10" Source="{Binding CurrentTower.Id, Converter={StaticResource TowerToImage}}"/>
+
 
         <Border CornerRadius="10" Background="AliceBlue" Margin="10" Grid.Row="1" BorderBrush="{StaticResource mainTitle}" BorderThickness="3"/>
 

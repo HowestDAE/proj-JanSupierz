@@ -13,7 +13,7 @@ namespace Project_JanSupierz.ViewModel
 {
     public class TowersPageVM : ObservableObject
     {
-        private BloonsTDApiRepository _bloomTDApiRepository = new BloonsTDApiRepository();
+        private BloonsTDApiRepository _bloonsTDApiRepository = new BloonsTDApiRepository();
         private BloonsTDLocalRepository _bloonsTDLocalRepository = new BloonsTDLocalRepository();
         private IBloonsTDRepository _bloonsTDRepository = null;
 
@@ -32,13 +32,26 @@ namespace Project_JanSupierz.ViewModel
             }
         }
 
-        private async void LoadTowers()
+        private Tower _selectedTower = null;
+        public Tower SelectedTower
         {
-            CurrentTowers = await _bloonsTDRepository.GetTowersAsync();
-            OnPropertyChanged(nameof(CurrentTowers));
+            get { return _selectedTower; }
+            set
+            {
+                _selectedTower = value;
+            }
+        }
 
-            TowerTypes = await _bloomTDApiRepository.GetTowerTypesAsync();
+        private async void Load()
+        {
+            var pair = await _bloonsTDApiRepository.LoadTowersAsync();
+
+            CurrentTowers = pair.Item1;
+            TowerTypes = pair.Item2;
+
+            OnPropertyChanged(nameof(CurrentTowers));
             OnPropertyChanged(nameof(TowerTypes));
+            
         }
 
         private async void LoadTowers(string value)
@@ -50,9 +63,9 @@ namespace Project_JanSupierz.ViewModel
         public TowersPageVM()
         {
             _bloonsTDRepository = _bloonsTDLocalRepository;
-            BloonsConverter.UseApi = (_bloonsTDRepository == _bloomTDApiRepository);
+            BloonsConverter.UseApi = (_bloonsTDRepository == _bloonsTDApiRepository);
 
-            LoadTowers();
+            Load();
         }
     }
 }

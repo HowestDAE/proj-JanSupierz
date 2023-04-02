@@ -16,35 +16,23 @@ namespace Project_JanSupierz.Repository
     internal class BloonsTDApiRepository : IBloonsTDRepository
     {
         private static List<Tower> _towers = null;
+        private static List<string> _types = null;
 
         public async Task<Tower> GetTowerAsync(string id)
         {
             if (_towers == null)
             {
-                await GetTowersAsync();
+                await LoadTowersAsync();
             }
 
             return _towers.Find(tower => tower.Id == id);
-        }
-
-        public async Task<List<string>> GetTowerTypesAsync()
-        {
-            if (_towers == null)
-            {
-                await GetTowersAsync();
-            }
-
-            List<string> types = _towers.Select(tower => tower.Type).Distinct().ToList();
-            types.Add("All Types");
-
-            return types;
         }
 
         public async Task<List<Tower>> GetTowersAsync(string type)
         {
             if (_towers == null)
             {
-                await GetTowersAsync();
+                await LoadTowersAsync();
             }
 
             if (type != "All Types")
@@ -57,12 +45,12 @@ namespace Project_JanSupierz.Repository
             }
         }
 
-        public async Task<List<Tower>> GetTowersAsync()
+        public async Task<Tuple<List<Tower>, List<string>>> LoadTowersAsync()
         {
             //Read only once
             if (_towers != null)
             {
-                return _towers;
+                return new Tuple<List<Tower>, List<string>>(_towers, _types);
             }
 
             _towers = new List<Tower>();
@@ -113,9 +101,12 @@ namespace Project_JanSupierz.Repository
                 {
                     MessageBox.Show("Loading towers failed!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
-
-                return _towers;
             }
+
+            _types = _towers.Select(tower => tower.Type).Distinct().ToList();
+            _types.Add("All Types");
+
+            return new Tuple<List<Tower>, List<string>>(_towers, _types);
         }
     }
 }

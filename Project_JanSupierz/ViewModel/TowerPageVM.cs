@@ -35,7 +35,9 @@ namespace Project_JanSupierz.ViewModel
         };
 
         //XAML - Bindings
-        public Tower CurrentTower { get { return _currentTower; } set { _currentTower = value;  OnPropertyChanged(nameof(CurrentTower)); } }
+        public Tower CurrentTower { get { return _currentTower; } set { _currentTower = value;  OnPropertyChanged(nameof(CurrentTower)); _currentPathIndex = 0;
+                LoadCurrentPath();
+            } }
         public List<Upgrade> CurrentPath { get { return _currentPath; } set { _currentPath = value; OnPropertyChanged(nameof(CurrentPath)); } }
 
         //Commands

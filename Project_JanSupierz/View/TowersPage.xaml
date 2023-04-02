@@ -59,7 +59,7 @@
         
         <ComboBox Grid.Column="0" Grid.Row="1" ItemsSource="{Binding TowerTypes}" SelectedItem="{Binding SelectedType}"/>
 
-        <ListBox Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="3" ItemsSource="{Binding CurrentTowers}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" HorizontalAlignment="Center" BorderBrush="{StaticResource BackgroundColor}" Background="{StaticResource BackgroundColor}">
+        <ListBox Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="3" ItemsSource="{Binding CurrentTowers}" SelectedItem="{Binding SelectedTower}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" HorizontalAlignment="Center" BorderBrush="{StaticResource BackgroundColor}" Background="{StaticResource BackgroundColor}">
 
             <ListBox.ItemsPanel>
                 <ItemsPanelTemplate>

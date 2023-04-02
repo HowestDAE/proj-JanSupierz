@@ -10,9 +10,8 @@ namespace Project_JanSupierz.Repository
 {
     public interface IBloonsTDRepository
     {
-        Task<List<Tower>> GetTowersAsync();
+        Task<Tuple<List<Tower>,List<string>>> LoadTowersAsync();
         Task<Tower> GetTowerAsync(string id);
-        Task<List<string>> GetTowerTypesAsync();
         Task<List<Tower>> GetTowersAsync(string type);
     }
 }

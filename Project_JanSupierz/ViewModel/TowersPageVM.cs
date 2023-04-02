@@ -17,12 +17,34 @@ namespace Project_JanSupierz.ViewModel
         private BloonsTDLocalRepository _bloonsTDLocalRepository = new BloonsTDLocalRepository();
         private IBloonsTDRepository _bloonsTDRepository = null;
 
-        private List<Tower> _currentTowers = new List<Tower>();
-        public List<Tower> CurrentTowers { get { return _currentTowers; } set { _currentTowers = value; OnPropertyChanged(nameof(CurrentTowers)); } }
+        public List<Tower> CurrentTowers { get; set; }
+        public List<string> TowerTypes { get; set; }
+
+
+        private string _selectedType = "All Types";
+        public string SelectedType
+        {
+            get { return _selectedType; }
+            set
+            {
+                LoadTowers(value);
+                _selectedType = value;
+            }
+        }
 
         private async void LoadTowers()
         {
             CurrentTowers = await _bloonsTDRepository.GetTowersAsync();
+            OnPropertyChanged(nameof(CurrentTowers));
+
+            TowerTypes = await _bloomTDApiRepository.GetTowerTypesAsync();
+            OnPropertyChanged(nameof(TowerTypes));
+        }
+
+        private async void LoadTowers(string value)
+        {
+            CurrentTowers = await _bloonsTDRepository.GetTowersAsync(value);
+            OnPropertyChanged(nameof(CurrentTowers));
         }
 
         public TowersPageVM()

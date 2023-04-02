@@ -15,16 +15,46 @@ namespace Project_JanSupierz.Repository
 {
     internal class BloonsTDApiRepository : IBloonsTDRepository
     {
-        private List<Tower> _towers;
+        private static List<Tower> _towers = null;
 
-        public async Task<Tower> GetTowerAsync()
+        public async Task<Tower> GetTowerAsync(string id)
         {
-            if(_towers == null)
+            if (_towers == null)
             {
                 await GetTowersAsync();
             }
 
-            return _towers.FirstOrDefault();
+            return _towers.Find(tower => tower.Id == id);
+        }
+
+        public async Task<List<string>> GetTowerTypesAsync()
+        {
+            if (_towers == null)
+            {
+                await GetTowersAsync();
+            }
+
+            List<string> types = _towers.Select(tower => tower.Type).Distinct().ToList();
+            types.Add("All Types");
+
+            return types;
+        }
+
+        public async Task<List<Tower>> GetTowersAsync(string type)
+        {
+            if (_towers == null)
+            {
+                await GetTowersAsync();
+            }
+
+            if (type != "All Types")
+            {
+                return _towers.Where(tower => tower.Type == type).ToList();
+            }
+            else
+            {
+                return _towers;
+            }
         }
 
         public async Task<List<Tower>> GetTowersAsync()
@@ -58,12 +88,12 @@ namespace Project_JanSupierz.Repository
                     foreach (JObject towerObject in towerArray)
                     {
                         Tower tower = towerObject.ToObject<Tower>();
-                        JObject pathObject = towerObject.SelectToken("paths").ToObject<JObject>();
+                        JObject pathObject = towerObject["paths"].ToObject<JObject>();
 
                         //Add upgrade paths
-                        tower.Paths.Add(pathObject.SelectToken("path1").ToObject<List<Upgrade>>());
-                        tower.Paths.Add(pathObject.SelectToken("path2").ToObject<List<Upgrade>>());
-                        tower.Paths.Add(pathObject.SelectToken("path3").ToObject<List<Upgrade>>());
+                        tower.Paths.Add(pathObject["path1"].ToObject<List<Upgrade>>());
+                        tower.Paths.Add(pathObject["path2"].ToObject<List<Upgrade>>());
+                        tower.Paths.Add(pathObject["path3"].ToObject<List<Upgrade>>());
 
                         //Save id for the upgrade images
                         for (int index = 0; index < tower.Paths.Count; index++)

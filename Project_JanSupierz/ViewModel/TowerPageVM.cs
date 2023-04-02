@@ -56,7 +56,7 @@ namespace Project_JanSupierz.ViewModel
 
         private async void LoadTower()
         {
-            CurrentTower = await _bloonsTDRepository.GetTowerAsync();
+            CurrentTower = await _bloonsTDRepository.GetTowerAsync(_currentTower.Id);
 
             //Load default path
             _currentPathIndex = 0;

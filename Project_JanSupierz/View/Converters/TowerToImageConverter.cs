@@ -15,11 +15,19 @@ namespace Project_JanSupierz.View.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
+            if (value == null) return Binding.DoNothing;
+
             string id = value.ToString();
+
+            if (!id.Contains('0'))
+            {
+                id = $"{id}/tower";
+            }
 
             if (UseApi)
             {
-                return $"https://statsnite.com/images/btd/towers/{id}/tower.png";
+                return $"https://statsnite.com/images/btd/towers/{id}.png";
+
             }
             else
             {
@@ -27,7 +35,7 @@ namespace Project_JanSupierz.View.Converters
 
                 try
                 {
-                    string path = (DesignerProperties.GetIsInDesignMode(new DependencyObject())) ? $"Resources/Towers/{id}/tower.png" : $"../../Resources/Towers/{id}/tower.png";
+                    string path = (DesignerProperties.GetIsInDesignMode(new DependencyObject())) ? $"Resources/Towers/{id}.png" : $"../../Resources/Towers/{id}.png";
                     image = new BitmapImage(new Uri($"pack://application:,,,/{path}", UriKind.Absolute));
                 }
                 catch

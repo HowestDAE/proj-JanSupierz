@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Data;
@@ -15,75 +16,85 @@ namespace Project_JanSupierz.ViewModel
 {
     public class TowerPageVM: ObservableObject
     {
-        private BloonsTDApiRepository _bloomTDApiRepository = new BloonsTDApiRepository();
-        private BloonsTDLocalRepository _bloonsTDLocalRepository = new BloonsTDLocalRepository();
-        private IBloonsTDRepository _bloonsTDRepository = null;
+        //Variables from main window
+        public IBloonsTDRepository Repository { get; set; }
+        public string Id { get; set; }
 
+        private Tower _currentTower = new Tower { };
+        public Tower CurrentTower
+        {
+            get
+            {
+                return _currentTower;
+            }
+            set
+            {
+                if (value == null) return;
+
+                _currentTower = value;
+                _currentTower.Description = TextToLines(_currentTower.Description);
+
+                //Load first path
+                _currentPathIndex = 0;
+                LoadCurrentPath();
+
+                OnPropertyChanged(nameof(CurrentTower));
+            }
+        }
+
+        //Upgrade paths
         private int _currentPathIndex;
         private List<Upgrade> _currentPath = new List<Upgrade>();
-
-        private Tower _currentTower = new Tower
-        {
-            Cost = new Cost { Easy = 0, Medium = 0, Hard = 0, Impoppable = 0 },
-            Name = "(name)",
-            Description = "(description)",
-            Stats = new Statistics { AttackSpeed = "0", Damage = "0", Pierce = "0", Range = "0", Type = "(type)" },
-            Type = "(type)",
-            Footprint = 0,
-            DefaultHotkey = "(hotkey)",
-            Id = "(id)"
-        };
-
-        //XAML - Bindings
-        public Tower CurrentTower { get { return _currentTower; } set { _currentTower = value;  OnPropertyChanged(nameof(CurrentTower)); _currentPathIndex = 0;
-                LoadCurrentPath();
-            } }
         public List<Upgrade> CurrentPath { get { return _currentPath; } set { _currentPath = value; OnPropertyChanged(nameof(CurrentPath)); } }
 
-        //Commands
-        public RelayCommand PreviousUpgradesCommand { get; private set; }
-        public RelayCommand NextUpgradesCommand { get; private set; }
-        public RelayCommand ChangeRepositoryCommand { get; private set; }
+        private Upgrade _selectedUpgrade = null;
+        public Upgrade SelectedUpgrade
+        {
+            get { return _selectedUpgrade; }
+            set
+            {
+                _selectedUpgrade = value;
 
+                CopyUpgradeValues();
+            }
+        }
+
+        //Reset button
+        public string CommandText { get; set; } = "";
+
+        //Load info
         private void LoadCurrentPath()
         {
             if (CurrentTower == null) return;
 
-            //Check range
+            //Check if range is correct
             if (CurrentTower.Paths.Count > _currentPathIndex && _currentPathIndex >= 0) 
             {
                 CurrentPath = CurrentTower.Paths[_currentPathIndex];
             }
         }
 
-        private async void LoadTower()
+        private async void ResetTower()
         {
-            CurrentTower = await _bloonsTDRepository.GetTowerAsync(_currentTower.Id);
+            _currentTower = (Tower)(await Repository.GetTowerAsync(Id)).Clone();
+            _currentTower.Description = TextToLines(_currentTower.Description);
+            OnPropertyChanged(nameof(CurrentTower));
 
-            //Load default path
-            _currentPathIndex = 0;
-            LoadCurrentPath();
+            CommandText = "";
+            OnPropertyChanged(nameof(CommandText));
         }
 
+        //Commands
+        public RelayCommand PreviousUpgradesCommand { get; private set; }
+        public RelayCommand NextUpgradesCommand { get; private set; }
+        public RelayCommand ChangeRepositoryCommand { get; private set; }
+        public RelayCommand ResetTowerCommand { get; private set; }
 
-        public TowerPageVM()
-        {
-            _bloonsTDRepository = _bloonsTDLocalRepository;
-            BloonsConverter.UseApi = (_bloonsTDRepository == _bloomTDApiRepository);
-
-            LoadTower();
-
-            PreviousUpgradesCommand = new RelayCommand(PreviousUpgrades);
-            NextUpgradesCommand = new RelayCommand(NextUpgrades);
-            ChangeRepositoryCommand = new RelayCommand(ChangeRepository);
-        }
-
-        //Helper functions
         private void NextUpgrades()
         {
             if (CurrentTower == null) return;
 
-            if (_currentPathIndex >= CurrentTower.Paths.Count -1)
+            if (_currentPathIndex >= CurrentTower.Paths.Count - 1) 
             {
                 _currentPathIndex = 0;
             }
@@ -111,19 +122,50 @@ namespace Project_JanSupierz.ViewModel
             LoadCurrentPath();
         }
 
-        private void ChangeRepository()
+        //Other
+        void CopyUpgradeValues()
         {
-            if (_bloonsTDRepository == _bloomTDApiRepository)
-            {
-                _bloonsTDRepository = _bloonsTDLocalRepository;
+            if (_selectedUpgrade == null) return;
 
-            }
-            else
+            _currentTower.Description = TextToLines(_selectedUpgrade.Description);
+
+            _currentTower.Cost = _selectedUpgrade.Cost;
+            _currentTower.Name = _selectedUpgrade.Name;
+            _currentTower.Id = _selectedUpgrade.Id;
+
+            _currentTower.Stats.AttackSpeed = "-";
+            _currentTower.Stats.Damage = "-";
+            _currentTower.Stats.Pierce = "-";
+            _currentTower.Stats.Range = "-";
+
+            CommandText = "Reset";
+            OnPropertyChanged(nameof(CommandText));
+
+            OnPropertyChanged(nameof(CurrentTower));
+        }
+
+        public TowerPageVM()
+        {
+            ResetTowerCommand = new RelayCommand(ResetTower);
+            PreviousUpgradesCommand = new RelayCommand(PreviousUpgrades);
+            NextUpgradesCommand = new RelayCommand(NextUpgrades);
+        }
+
+        private string TextToLines(string text, int nrCharactersPerLine = 60)
+        {
+            int nrCharacters = 0;
+
+            for (int i = 0; i < text.Length; i++)
             {
-                _bloonsTDRepository = _bloomTDApiRepository;
+                nrCharacters++;
+                if (nrCharacters >= nrCharactersPerLine && text[i] == ' ')
+                {
+                    text = text.Remove(i, 1).Insert(i, "\n");
+                    nrCharacters = 0;
+                }
             }
 
-            BloonsConverter.UseApi = (_bloonsTDRepository == _bloomTDApiRepository);
+            return text;
         }
     }
 }

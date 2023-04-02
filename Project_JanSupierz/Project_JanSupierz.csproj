@@ -97,7 +97,6 @@
     <Compile Include="ViewModel\TowersPageVM.cs" />
     <Compile Include="View\Converters\BloonsConverter.cs" />
     <Compile Include="View\Converters\TowerToImageConverter.cs" />
-    <Compile Include="View\Converters\TowerUpgradeToImageConverter.cs" />
     <Compile Include="View\TowerPage.xaml.cs">
       <DependentUpon>TowerPage.xaml</DependentUpon>
     </Compile>

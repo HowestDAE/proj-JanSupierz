@@ -6,6 +6,8 @@ The project uses two repositories:
  - Local: The project reads a local JSON file and uses local images.
  - API: The project retrieves data from an online database: https://statsnite.com/btd/api
 
+I think it matches the Game Development profile because this game is enjoyable, and creating a viewer like this could be useful for a game company to showcase the game and attract potential players.
+
 # Main Page
 
 On this page, you can see an overview of all towers. 

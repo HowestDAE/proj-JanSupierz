@@ -108,8 +108,6 @@ namespace Project_JanSupierz.Model
         public string Name { get; set; }
         public string Description { get; set; }
         public Cost Cost { get; set; }
-        public int UnlockXp { get; set; }
-        public List<string> Effects { get; set; }
 
         public object Clone()
         {
@@ -119,15 +117,7 @@ namespace Project_JanSupierz.Model
                 Name = Name,
                 Description = Description,
                 Cost = (Cost)Cost.Clone(),
-                UnlockXp = UnlockXp,
-                Effects = new List<string>()
             };
-
-            // Create deep copy of the Effects list
-            foreach (string effect in Effects)
-            {
-                newUpgrade.Effects.Add(effect);
-            }
 
             return newUpgrade;
         }

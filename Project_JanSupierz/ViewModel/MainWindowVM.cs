@@ -45,16 +45,29 @@ namespace Project_JanSupierz.ViewModel
             CurrentPage = TowersPage;
             SwitchPageCommand = new RelayCommand(SwitchPage);
 
-            SetRepository();
+            //Select a repository -- _bloonsTDLocalRepository or _bloonsTDApiRepository
+            SetRepository(_bloonsTDLocalRepository);
+            (TowersPage.DataContext as TowersPageVM).Load(new RelayCommand(ChangeRepository));
+        }
+
+        private void ChangeRepository()
+        {
+            if(_bloonsTDRepository == _bloonsTDApiRepository)
+            {
+                SetRepository(_bloonsTDLocalRepository);
+            }
+            else
+            {
+                SetRepository(_bloonsTDApiRepository);
+            }
+
+            //Reload the main page
             (TowersPage.DataContext as TowersPageVM).Load();
         }
 
-        private void SetRepository()
+        private void SetRepository(IBloonsTDRepository repository)
         {
-            //Select a repository -- _bloonsTDLocalRepository or _bloomTDApiRepository
-            _bloonsTDRepository = _bloonsTDApiRepository;
-
-
+            _bloonsTDRepository = repository;
 
             //Changing mode for images
             BloonsConverter.UseApi = (_bloonsTDRepository == _bloonsTDApiRepository);
@@ -64,7 +77,7 @@ namespace Project_JanSupierz.ViewModel
             (TowersPage.DataContext as TowersPageVM).Repository = _bloonsTDRepository;
         }
 
-        public void SwitchPage()
+        private void SwitchPage()
         {
             if (CurrentPage is TowersPage)
             {

@@ -48,6 +48,7 @@
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
 
+        <!--Title-->
         <Rectangle Grid.ColumnSpan="3" Fill="{StaticResource SearchListColor}"/>
         <Viewbox HorizontalAlignment="Center" VerticalAlignment="Center" Grid.ColumnSpan="3" Margin="{StaticResource BottomMargin}">
             <TextBlock Text="Bloons TD 6" FontSize="24" FontWeight="Bold">
@@ -56,9 +57,12 @@
                 </TextBlock.Effect>
             </TextBlock>
         </Viewbox>
-        
-        <ComboBox Grid.Column="0" Grid.Row="1" ItemsSource="{Binding TowerTypes}" SelectedItem="{Binding SelectedType}"/>
 
+        <!--Selections-->
+        <ComboBox Grid.Column="0" Grid.Row="1" ItemsSource="{Binding TowerTypes}" SelectedItem="{Binding SelectedType}"/>
+        <Button Grid.Column="2" Grid.Row="1" Content="{Binding RepositoryButtonText}" Command="{Binding ChangeRepositoryCommand}"/>
+        
+        <!--List of Towers-->
         <ListBox Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="3" ItemsSource="{Binding CurrentTowers}" SelectedItem="{Binding SelectedTower}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" HorizontalAlignment="Center" BorderBrush="{StaticResource BackgroundColor}" Background="{StaticResource BackgroundColor}">
 
             <ListBox.ItemsPanel>
@@ -69,13 +73,14 @@
 
             <ListBox.ItemTemplate>
                 <DataTemplate>
-
                     <Border Grid.Row="0" Grid.RowSpan="2" BorderThickness="3" BorderBrush="{StaticResource TextColor}" Margin="5" CornerRadius="10" ClipToBounds="True" Width="200">
 
+                        <!--Background Image-->
                         <Border.Background>
                             <ImageBrush ImageSource="/Resources/background.png" Opacity="0.8" Stretch="UniformToFill"/>
                         </Border.Background>
 
+                        <!--Tower-->
                         <StackPanel>
                             <Image Grid.Row="0" Source="{Binding Id, Converter={StaticResource TowerToImage},FallbackValue= Resources/Towers/tower.png }"/>
 
@@ -84,7 +89,6 @@
                             </Border>
                         </StackPanel>
                     </Border>
-
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>

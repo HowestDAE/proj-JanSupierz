@@ -87,7 +87,6 @@ namespace Project_JanSupierz.ViewModel
         //Commands
         public RelayCommand PreviousUpgradesCommand { get; private set; }
         public RelayCommand NextUpgradesCommand { get; private set; }
-        public RelayCommand ChangeRepositoryCommand { get; private set; }
         public RelayCommand ResetTowerCommand { get; private set; }
 
         private void NextUpgrades()

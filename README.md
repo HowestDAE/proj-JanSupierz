@@ -8,18 +8,20 @@ The project uses two repositories:
 
 # Main Page
 
+On this page, you can see an overview of all towers. 
+
 ![image](https://user-images.githubusercontent.com/114002276/230404818-63b3964b-cd0c-4b50-ad1c-4b872731d734.png)
 
-On this page, you can see an overview of all towers. 
 - You can view details of a certain tower by selecting it and pressing a button at the bottom of the window. 
 - There is also a button for selecting the type of displayed towers. 
 - You can also change the repository by clicking the button on the right side.
 
 # Detail Page
 
-![image](https://user-images.githubusercontent.com/114002276/230405119-d4d3d706-a00d-4147-b065-bd8568d85f71.png)
 
 On this page, you can view details such as the name, description, stats, costs (based on difficulty level), and other info about the selected tower.
+
+![image](https://user-images.githubusercontent.com/114002276/230405119-d4d3d706-a00d-4147-b065-bd8568d85f71.png)
 
 At the bottom of the page, there is a list of all upgrades. You can only see one upgrade path at a time, so use the "previous" and "next" buttons to switch between them.
 

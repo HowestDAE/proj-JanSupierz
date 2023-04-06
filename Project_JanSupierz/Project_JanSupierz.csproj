@@ -145,8 +145,6 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <None Include="Resources\Data\bloon_red.json" />
-    <None Include="Resources\Data\hero_quincy.json" />
     <None Include="Resources\Data\towers.json" />
   </ItemGroup>
   <ItemGroup>
@@ -156,10 +154,6 @@
     <Resource Include="Resources\Towers\tower.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\bloon.png" />
-    <Resource Include="Resources\bloon_type.png" />
-    <Resource Include="Resources\hero.png" />
-    <Resource Include="Resources\hero_001.png" />
     <Resource Include="Resources\Towers\alchemist\tower.png" />
     <Resource Include="Resources\Towers\banana-farm\tower.png" />
     <Resource Include="Resources\Towers\bomb-shooter\tower.png" />
@@ -183,9 +177,6 @@
     <Resource Include="Resources\Towers\tack-shooter\tower.png" />
     <Resource Include="Resources\Towers\wizard-monkey\tower.png" />
     <Resource Include="Resources\tower_001.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Bloons_Pop_Background.jpg" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\background.png" />

@@ -52,14 +52,14 @@ namespace Project_JanSupierz.ViewModel
             CurrentTowers = pair.Item1;
             TowerTypes = pair.Item2;
 
-            OnPropertyChanged(nameof(CurrentTowers));
-            OnPropertyChanged(nameof(TowerTypes));
-
             //Selected type is not "All types"
             if (_selectedType != TowerTypes.Last())
             {
                 LoadTowers(_selectedType);
             }
+
+            OnPropertyChanged(nameof(CurrentTowers));
+            OnPropertyChanged(nameof(TowerTypes));
 
             UpdateRepositoryButtonText();
         }

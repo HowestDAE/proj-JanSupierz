@@ -82,7 +82,7 @@
 
                         <!--Tower-->
                         <StackPanel>
-                            <Image Grid.Row="0" Source="{Binding Id, Converter={StaticResource TowerToImage},FallbackValue= Resources/Towers/tower.png }"/>
+                            <Image Grid.Row="0" Source="{Binding Id, Converter={StaticResource TowerToImage},FallbackValue=https://statsnite.com/images/btd/towers/dart-monkey/tower.png}"/>
 
                             <Border BorderThickness="0,2,0,0" BorderBrush="{StaticResource TextColor}" CornerRadius="0,0,10,10" Background="AliceBlue">
                                 <TextBlock Text="{Binding Name}" Padding="10" HorizontalAlignment="Center" Foreground="{StaticResource TextColor}" FontWeight="SemiBold" FontSize="{StaticResource MainTitleSize}"/>

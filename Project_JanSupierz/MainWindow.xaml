@@ -14,7 +14,7 @@
 
     <Grid>
         <Frame NavigationUIVisibility="Hidden" Content="{Binding CurrentPage}"/>
-        <Button VerticalAlignment="Bottom"
+        <Button VerticalAlignment="Bottom" Height="30"
                 Command="{Binding SwitchPageCommand}"
                 Content="{Binding CommandText}"/>
     </Grid>

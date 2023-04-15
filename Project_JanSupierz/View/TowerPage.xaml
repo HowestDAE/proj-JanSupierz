@@ -62,7 +62,7 @@
         </Viewbox>
 
         <!-- Image of Selected Tower -->
-        <Image Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" Margin="10" Source="{Binding CurrentTower.Id, Converter={StaticResource TowerToImage}, FallbackValue=Resources/Towers/tower.png}"/>
+        <Image Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" Margin="10" Source="{Binding CurrentTower.Id, Converter={StaticResource TowerToImage}, FallbackValue=https://statsnite.com/images/btd/towers/dart-monkey/tower.png}"/>
 
         <!-- Statictics -->
         <Border Grid.Row="1"  BorderBrush="{StaticResource TextColor}" Background="{StaticResource BackgroundColor}" CornerRadius="{StaticResource BorderRadius}" BorderThickness="{StaticResource BorderThickness}" Margin="{StaticResource SmallMargin}"/>
